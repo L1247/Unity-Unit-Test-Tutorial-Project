@@ -1,4 +1,4 @@
 # Unity Unit Test Tutorial Project
 
 ## Youtube video link
-https://youtu.be/sHCkHjru8-0
+[單元測試實戰系列](https://www.youtube.com/playlist?list=PLGkS8CzB8N0HrxeFLm9UcjlqIBCl5gS_v)
