@@ -1,5 +1,9 @@
+#region
+
 using UnityEngine;
 using UnityEngine.Assertions;
+
+#endregion
 
 namespace UnitTest
 {
@@ -7,9 +11,9 @@ namespace UnitTest
     {
     #region Private Variables
 
-        private Rigidbody2D    rb; // 角色剛體
-        private IInputSystem   inputSystem;
-        private IUnityServices unityServices;
+        private Rigidbody2D   rb; // 角色剛體
+        private IInputSystem  inputSystem;
+        private IUnityService unityService;
 
         [SerializeField]
         private float moveSpeed = 5f; // 角色移動速度
@@ -37,8 +41,8 @@ namespace UnitTest
             rb = GetComponent<Rigidbody2D>();
             if (rb == null) rb = gameObject.AddComponent<Rigidbody2D>();
             Assert.IsNotNull(rb , "rb is null");
-            inputSystem   = new InputSystem();
-            unityServices = new UnityServices(rb);
+            inputSystem  = new InputSystem();
+            unityService = new UnityService(rb);
         }
 
         public void SetInputSystem(IInputSystem inputSystem)
@@ -51,9 +55,9 @@ namespace UnitTest
             this.moveSpeed = moveSpeed;
         }
 
-        public void SetUnityServices(IUnityServices unityServices)
+        public void SetUnityServices(IUnityService unityService)
         {
-            this.unityServices = unityServices;
+            this.unityService = unityService;
         }
 
     #endregion
@@ -63,7 +67,7 @@ namespace UnitTest
         private void HandleMovement()
         {
             var movement = new Vector2(inputSystem.GetHorizontalValue() * moveSpeed , rb.velocity.y);
-            unityServices.MovePositionByRigidbody(movement);
+            unityService.MovePositionByRigidbody(movement);
         }
 
     #endregion
