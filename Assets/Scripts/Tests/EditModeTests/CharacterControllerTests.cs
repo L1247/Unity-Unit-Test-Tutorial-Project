@@ -12,9 +12,33 @@ public class CharacterControllerTests
 {
 #region Test Methods
 
+    [Test(Description = "測試取得元件在Unity內")]
+    [Category("Tests")]
+    public void _01_Test_GetComponent()
+    {
+        // arrange
+        var gameObject = new GameObject().AddComponent<CharacterController>();
+        // act
+        var characterController = gameObject.GetComponent<CharacterController>();
+        // assert
+        Assert.IsNotNull(characterController , "characterController is no exists.");
+    }
+
+    [Test]
+    [Category("jsadhkjash")]
+    public void _02_Test_NewGameObject()
+    {
+        // arrange
+        var gameObjectName = "MyCharacter";
+        // act
+        var gameObject = new GameObject(gameObjectName);
+        // assert
+        Assert.AreEqual("MyCharacter" , gameObject.name);
+    }
+
     [Test(Description = "按下左右方向鍵控制角色移動")]
     [Category("CharacterController")]
-    public void Character_Move_By_Press_Horizontal_Arrow_Key()
+    public void _03_Character_Move_By_Press_Horizontal_Arrow_Key()
     {
         // arrange
         var characterController = new GameObject().AddComponent<CharacterController>();
@@ -34,7 +58,7 @@ public class CharacterControllerTests
 
     [Test(Description = "按下左右方向鍵控制角色移動")]
     [Category("CharacterController")]
-    public void Character_Move_By_Press_Horizontal_Arrow_Key_Interaction()
+    public void _04_Character_Move_By_Press_Horizontal_Arrow_Key_Interaction()
     {
         // arrange
         var inputSystem         = Substitute.For<IInputSystem>();
@@ -51,30 +75,6 @@ public class CharacterControllerTests
 
         // assert
         unityServices.Received(1).MovePositionByRigidbody(new Vector2(10 , 0));
-    }
-
-    [Test(Description = "測試取得元件在Unity內")]
-    [Category("Tests")]
-    public void Test_GetComponent()
-    {
-        // arrange
-        var gameObject = new GameObject().AddComponent<CharacterController>();
-        // act
-        var characterController = gameObject.GetComponent<CharacterController>();
-        // assert
-        Assert.IsNotNull(characterController , "characterController is no exists.");
-    }
-
-    [Test]
-    [Category("jsadhkjash")]
-    public void Test_NewGameObject()
-    {
-        // arrange
-        var gameObjectName = "MyCharacter";
-        // act
-        var gameObject = new GameObject(gameObjectName);
-        // assert
-        Assert.AreEqual("MyCharacter" , gameObject.name);
     }
 
 #endregion
